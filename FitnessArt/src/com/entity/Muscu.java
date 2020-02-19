@@ -8,43 +8,17 @@ import javax.persistence.Id;
 
 
 @Entity
-public class Muscu implements Serializable {
+public class Muscu extends Activity implements Serializable {
 	
-	@Id
-	@GeneratedValue
-	private int idMuscu;
 	private int weight;
 	private int repetition;
 	
 	public Muscu() {
-		
+		super();
 	}
-
-	public int getIdMuscu() {
-		return idMuscu;
-	}
-
-	public void setIdMuscu(int idMuscu) {
-		this.idMuscu = idMuscu;
-	}
-
-	public int getRepetition() {
-		return repetition;
-	}
-
-	public void setRepetition(int repetition) {
-		this.repetition = repetition;
-	}
-
-	public int getWeight() {
-		return weight;
-	}
-
-	public void setWeight(int weight) {
-		this.weight = weight;
-	}
-
 	
-	
+	public Muscu(int idActivity, String nameActivity) {
+		super(idActivity, nameActivity);
+	}
 	
 }
