@@ -8,6 +8,7 @@ import javax.persistence.Id;
 
 
 @Entity
+//yo lionel
 public class Activity implements Serializable {
 	
 	@Id
