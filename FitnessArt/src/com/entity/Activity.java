@@ -23,6 +23,25 @@ public class Activity implements Serializable {
 
 	public Activity() {
 	}
+
+	public int getIdActivity() {
+		return idActivity;
+	}
+
+	public void setIdActivity(int idActivity) {
+		this.idActivity = idActivity;
+	}
+
+	public String getNameActivity() {
+		return nameActivity;
+	}
+
+	public void setNameActivity(String nameActivity) {
+		this.nameActivity = nameActivity;
+	}
+
+
+	
 	
 
 }
