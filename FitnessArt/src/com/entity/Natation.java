@@ -19,5 +19,12 @@ public class Natation extends Activity implements Serializable {
 	public Natation(int idActivity, String nameActivity) {
 		super(idActivity, nameActivity);
 	}
+
+	public Natation(int idActivity, String nameActivity, String type, int distance) {
+		super(idActivity, nameActivity);
+		this.type = type;
+		this.distance = distance;
+	}
+	
 	
 }

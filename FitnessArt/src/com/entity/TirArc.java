@@ -19,5 +19,13 @@ public class TirArc extends Activity implements Serializable  {
 	public TirArc(int idActivity, String nameActivity) {
 		super(idActivity, nameActivity);
 	}
+
+	public TirArc(int idActivity, String nameActivity, int nbrPoint, int distance) {
+		super(idActivity, nameActivity);
+		this.nbrPoint = nbrPoint;
+		this.distance = distance;
+	}
+	
+	
 	
 }

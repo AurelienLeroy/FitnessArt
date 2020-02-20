@@ -17,8 +17,20 @@ public class Golf extends Activity implements Serializable {
 		super();
 	}
 	
+	
+
 	public Golf(int idActivity, String nameActivity) {
 		super(idActivity, nameActivity);
 	}
+
+
+
+	public Golf(int idActivity, String nameActivity, String level, int series) {
+		super(idActivity, nameActivity);
+		this.level = level;
+		this.series = series;
+	}
+	
+	
 	
 }

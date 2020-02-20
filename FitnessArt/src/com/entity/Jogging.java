@@ -20,5 +20,12 @@ public class Jogging extends Activity implements Serializable {
 	public Jogging(int idActivity, String nameActivity) {
 		super(idActivity, nameActivity);
 	}
+
+	public Jogging(int idActivity, String nameActivity, int distance, int time) {
+		super(idActivity, nameActivity);
+		this.distance = distance;
+		this.time = time;
+	}
+	
 	
 }

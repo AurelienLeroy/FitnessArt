@@ -17,6 +17,15 @@ public class Apnee extends Activity implements Serializable {
 		super();
 	}
 	
+	
+	
+
+	public Apnee(int idActivity, String nameActivity) {
+		super(idActivity, nameActivity);
+	}
+
+
+
 
 	public Apnee(int idActivity, String nameActivity, int depth, int time) {
 		super(idActivity, nameActivity);
