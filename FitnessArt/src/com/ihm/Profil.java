@@ -1,29 +1,21 @@
 package ihm;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-
-import dataBase.DataBase;
-
-import javax.swing.JPasswordField;
-import javax.swing.JCheckBox;
-
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Registration extends JPanel implements ActionListener {
-	
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class Profil extends JPanel implements ActionListener{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	//private DataBase data ;
-	
 	private JTextField name;
 	private JTextField firstName;
 	//private JComboBox<String>sex;
@@ -33,7 +25,7 @@ public class Registration extends JPanel implements ActionListener {
 	private JTextField pseudo;
 	private JPasswordField passwordField;
 	
-	private JButton regis;
+	private JButton modif;
 	private JButton back;
 	
 	private JCheckBox apnee;
@@ -46,7 +38,7 @@ public class Registration extends JPanel implements ActionListener {
 	/**
 	 * Create the panel.
 	 */
-	public Registration() {
+	public Profil() {
 		setToolTipText("");
 		setLayout(null);
 		
@@ -54,9 +46,8 @@ public class Registration extends JPanel implements ActionListener {
     	Font font2 = new Font("Serif", Font.BOLD, 40);
     	Font font3 = new Font("Serif", Font.PLAIN, 37);
     	
-    	//data = new DataBase();
 		
-		JLabel lblNewLabel = new JLabel("Inscription");
+		JLabel lblNewLabel = new JLabel("Profil");
 		lblNewLabel.setFont(font);
 		lblNewLabel.setBounds(500, 10, 312, 50);
 		add(lblNewLabel);
@@ -66,7 +57,7 @@ public class Registration extends JPanel implements ActionListener {
 		lblNewLabel_1.setBounds(60, 90, 453, 37);
 		add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("Choix de Sport");
+		JLabel lblNewLabel_2 = new JLabel("Sports Choisis");
 		lblNewLabel_2.setFont(font2);
 		lblNewLabel_2.setBounds(800, 90, 400, 37);
 		add(lblNewLabel_2);
@@ -101,17 +92,12 @@ public class Registration extends JPanel implements ActionListener {
 		lblNewLabel_8.setBounds(60, 470, 200, 40);
 		add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_9 = new JLabel("Mot de passe : ");
-		lblNewLabel_9.setFont(font3);
-		lblNewLabel_9.setBounds(60, 530, 220, 40);
-		add(lblNewLabel_9);
+		modif = new JButton("Modifier Informations");
+		modif.addActionListener(this);
+		modif.setBounds(300, 640, 300, 80);
+		add(modif);
 		
-		regis = new JButton("REJOIGNEZ-NOUS");
-		regis.addActionListener(this);
-		regis.setBounds(300, 640, 300, 80);
-		add(regis);
-		
-		back = new JButton("RETOUR");
+		back = new JButton("Retour");
 		back.setBounds(675, 640, 300, 80);
 		add(back);
 		
@@ -130,7 +116,7 @@ public class Registration extends JPanel implements ActionListener {
 		
 		weight = new JTextField();
 		weight.setFont(font3);
-		weight.setBounds(313, 418, 200, 40);
+		weight.setBounds(313, 410, 200, 40);
 		add(weight);
 		weight.setColumns(10);
 		
@@ -142,14 +128,9 @@ public class Registration extends JPanel implements ActionListener {
 		
 		pseudo = new JTextField();
 		pseudo.setFont(font3);
-		pseudo.setBounds(313, 478, 200, 40);
+		pseudo.setBounds(313, 470, 200, 40);
 		add(pseudo);
 		pseudo.setColumns(10);
-		
-		passwordField = new JPasswordField();
-		passwordField.setFont(font3);
-		passwordField.setBounds(313, 530, 200, 40);
-		add(passwordField);
 		
 		sex = new JTextField();
 		//sex.addItem("Homme");
@@ -188,10 +169,7 @@ public class Registration extends JPanel implements ActionListener {
 		arc.setFont(font3);
 		arc.setBounds(800, 470, 200, 40);
 		add(arc);
-
 	}
-
-
 
 	public void setName(JTextField name) {
 		this.name = name;
@@ -213,8 +191,6 @@ public class Registration extends JPanel implements ActionListener {
 		this.weight = weight;
 	}
 
-	
-
 	public void setSize(JTextField size) {
 		this.size = size;
 	}
@@ -233,14 +209,6 @@ public class Registration extends JPanel implements ActionListener {
 
 	public void setPasswordField(JPasswordField passwordField) {
 		this.passwordField = passwordField;
-	}
-
-	public JButton getRegis() {
-		return regis;
-	}
-
-	public void setRegis(JButton regis) {
-		this.regis = regis;
 	}
 
 	public JButton getBack() {
@@ -291,11 +259,16 @@ public class Registration extends JPanel implements ActionListener {
 		this.jogging = jogging;
 	}
 
+	public JCheckBox getArc() {
+		return arc;
+	}
 
+	public void setArc(JCheckBox arc) {
+		this.arc = arc;
+	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == regis) {
+		if(e.getSource() == modif) {
 			
 			try {
 				String nom = name.getText();
@@ -304,8 +277,7 @@ public class Registration extends JPanel implements ActionListener {
 				int taille =Integer.parseInt(size.getText());
 				int poids = Integer.parseInt(weight.getText());
 				String pseudonyme = pseudo.getText();
-				String pass = passwordField.getText();
-				//data.insertionUser(nom, prenom, sexe, taille, poid, pseudonime, pass);
+				//data.insertionUser(nom, prenom, sexe, taille, poids, pseudonyme, pass);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -314,6 +286,5 @@ public class Registration extends JPanel implements ActionListener {
 		}
 		
 	}
-	
-	
+
 }

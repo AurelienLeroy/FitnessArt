@@ -1,45 +1,33 @@
-package com.ihm;
+package ihm;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Random;
-
-import javax.imageio.ImageIO;
-import javax.swing.BoxLayout;
-import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
-import javax.swing.JList;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextField;
 
 
 public class Fenetre extends JFrame implements Runnable,ActionListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Registration registration;
 	private MainPage mainpage;
+	private Profil profil;
+	private Muscu muscu;
 	private Jogging jogging;
 	private Apnee apnee;
+	private Natation natation;
+	private Arc arc;
+	private Golf golf;
 	private Progres progres;
 	private Activity activity;
 	
+	// Provisoire //
+	private static boolean apneetf=false, joggingtf=true, muscutf=true;
+	
 	public Fenetre(){
 	    this.setTitle("FitnessArt");
-	    this.setSize(1900, 1000);
+	    this.setSize(1300, 800);
 	    this.setLocationRelativeTo(null);
 	    
 	    registration = new Registration();
@@ -50,15 +38,46 @@ public class Fenetre extends JFrame implements Runnable,ActionListener {
 	    mainpage.getRegisButton().addActionListener(new RegistrationFunction());
 	    mainpage.getConnectButton().addActionListener(new ActivityFunction());
 	    
+	    profil = new Profil();
+	    profil.getBack().addActionListener(new ActivityFunction());
 	    
 	    apnee = new Apnee();
+	    apnee.getBackButton().addActionListener(new ActivityFunction());
+	    apnee.getProgresButton().addActionListener(new ProgresFunction());
+	    apnee.getProfilButton().addActionListener(new ProfilFunction());
+	    
+	    muscu = new Muscu();
+	    muscu.getBackButton().addActionListener(new ActivityFunction());
+	    muscu.getProfilButton().addActionListener(new ProfilFunction());
+	    
 	    jogging = new Jogging();
+	    jogging.getBackButton().addActionListener(new ActivityFunction());
+	    jogging.getProfilButton().addActionListener(new ProfilFunction());
+	    
+	    natation = new Natation();
+	    natation.getBackButton().addActionListener(new ActivityFunction());
+	    natation.getProfilButton().addActionListener(new ProfilFunction());
+	    
+	    arc = new Arc();
+	    arc.getBackButton().addActionListener(new ActivityFunction());
+	    arc.getProfilButton().addActionListener(new ProfilFunction());
+	    
+	    golf = new Golf();
+	    golf.getBackButton().addActionListener(new ActivityFunction());
+	    golf.getProfilButton().addActionListener(new ProfilFunction());
+	    
 	    progres = new Progres();
+	    progres.getBackButton().addActionListener(new ActivityFunction());
 	    
 	    activity = new Activity();
+	    activity.getBtnProfil().addActionListener(new ProfilFunction());
 	    activity.getBtnBack().addActionListener(new MainpageFunction());
 	    activity.getBtnApnee().addActionListener(new ApneeFunction());
+	    activity.getBtnDevcouche().addActionListener(new MuscuFunction());
 	    activity.getBtnJogging().addActionListener(new JoggingFunction());
+	    activity.getBtnNatation().addActionListener(new NatationFunction());
+	    activity.getBtnArc().addActionListener(new ArcFunction());
+	    activity.getBtnGolf().addActionListener(new GolfFunction());
 	    
 	    this.setContentPane(mainpage);
 	    
@@ -151,6 +170,11 @@ public Registration getRegistration() {
 		this.revalidate();
 	}
 	
+	public void profil() {
+		this.setContentPane(profil);
+		this.revalidate();
+	}
+	
 	public void progres() {
 		this.setContentPane(progres);
 		this.revalidate();
@@ -161,8 +185,28 @@ public Registration getRegistration() {
 		this.revalidate();
 	}
 	
+	public void muscu() {
+		this.setContentPane(muscu);
+		this.revalidate();
+	}
+	
 	public void jogging() {
-		this.setContentPane(jogging.getPanel());
+		this.setContentPane(jogging);
+		this.revalidate();
+	}
+	
+	public void natation() {
+		this.setContentPane(natation);
+		this.revalidate();
+	}
+	
+	public void arc() {
+		this.setContentPane(arc);
+		this.revalidate();
+	}
+	
+	public void golf() {
+		this.setContentPane(golf);
 		this.revalidate();
 	}
 	
@@ -208,6 +252,18 @@ public Registration getRegistration() {
 		}		
 	}
 	
+	public class ProfilFunction implements ActionListener{
+
+		/**
+		 * Wait an action to be performed, react to the action
+		 * @see MainWindow#acceuil()
+		 */
+		public void actionPerformed(ActionEvent e) {
+			
+			Fenetre.this.profil();			
+		}		
+	}
+	
 	public class ProgresFunction implements ActionListener{
 
 		/**
@@ -227,8 +283,28 @@ public Registration getRegistration() {
 		 * @see MainWindow#acceuil()
 		 */
 		public void actionPerformed(ActionEvent e) {
-			
-			Fenetre.this.apnee();			
+			if (Fenetre.apneetf == true) {
+				Fenetre.this.apnee();
+			}
+			else {
+				new AccessForbidden(Fenetre.this);
+			}
+		}		
+	}
+	
+	public class MuscuFunction implements ActionListener{
+
+		/**
+		 * Wait an action to be performed, react to the action
+		 * @see MainWindow#acceuil()
+		 */
+		public void actionPerformed(ActionEvent e) {
+			if (Fenetre.muscutf == true) {
+				Fenetre.this.muscu();
+			}
+			else {
+				new AccessForbidden(Fenetre.this);
+			}
 		}		
 	}
 	
@@ -239,11 +315,50 @@ public Registration getRegistration() {
 		 * @see MainWindow#acceuil()
 		 */
 		public void actionPerformed(ActionEvent e) {
-			
-			Fenetre.this.jogging();			
+			if (Fenetre.joggingtf == true) {
+				Fenetre.this.jogging();
+			}
+			else {
+				new AccessForbidden(Fenetre.this);
+			}
 		}		
 	}
 	
+	public class NatationFunction implements ActionListener{
+
+		/**
+		 * Wait an action to be performed, react to the action
+		 * @see MainWindow#acceuil()
+		 */
+		public void actionPerformed(ActionEvent e) {
+			
+			Fenetre.this.natation();			
+		}		
+	}
+	
+	public class ArcFunction implements ActionListener{
+
+		/**
+		 * Wait an action to be performed, react to the action
+		 * @see MainWindow#acceuil()
+		 */
+		public void actionPerformed(ActionEvent e) {
+			
+			Fenetre.this.arc();			
+		}		
+	}
+	
+	public class GolfFunction implements ActionListener{
+
+		/**
+		 * Wait an action to be performed, react to the action
+		 * @see MainWindow#acceuil()
+		 */
+		public void actionPerformed(ActionEvent e) {
+			
+			Fenetre.this.golf();			
+		}		
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {

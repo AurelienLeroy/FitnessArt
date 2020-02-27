@@ -1,11 +1,14 @@
-package com.ihm;
+package ihm;
 
 import javax.swing.JPanel;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 
 public class MainPage extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JButton connectButton;
 	private JButton regisButton;
 
@@ -16,11 +19,11 @@ public class MainPage extends JPanel {
 		setLayout(null);
 		
 		connectButton = new JButton("Se connecter");
-		connectButton.setBounds(775, 420, 150, 80);
+		connectButton.setBounds(495, 350, 150, 80);
 		add(connectButton);
 		
 		regisButton = new JButton("S'inscrire");
-		regisButton.setBounds(975, 420, 150, 80);
+		regisButton.setBounds(655, 350, 150, 80);
 		add(regisButton);
 		
 

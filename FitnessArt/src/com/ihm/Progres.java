@@ -1,4 +1,4 @@
-package com.ihm;
+package ihm;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -9,7 +9,11 @@ import javax.swing.JButton;
 
 public class Progres extends JPanel {
 	
-	private JButton changeButton;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JButton backButton;
 	private JButton activityButton;
 	private JButton profilButton;
 	
@@ -31,11 +35,11 @@ public class Progres extends JPanel {
     	title.setBounds(850, 10, 312, 50);
 		add(title);
 		
-		changeButton = new JButton("Changer");
-		changeButton.setBounds(600, 800, 150, 60);
-		add(changeButton);
+		backButton = new JButton("Retour");
+		backButton.setBounds(600, 800, 150, 60);
+		add(backButton);
 		
-		activityButton = new JButton("Activit�");
+		activityButton = new JButton("Activité");
 		activityButton.setBounds(850, 800, 150, 60);
 		add(activityButton);
 		
@@ -43,7 +47,7 @@ public class Progres extends JPanel {
 		profilButton.setBounds(1100, 800, 150, 60);
 		add(profilButton);
 		
-		activities = new JLabel("Activit�s r�centes");
+		activities = new JLabel("Activités récentes");
 		activities.setFont(font2);
 		activities.setBounds(60, 90, 453, 37);
 		add(activities);
@@ -53,6 +57,30 @@ public class Progres extends JPanel {
 		stat.setBounds(1400, 90, 400, 37);
 		add(stat);
 
+	}
+
+	public JButton getBackButton() {
+		return backButton;
+	}
+
+	public void setBackButton(JButton backButton) {
+		this.backButton = backButton;
+	}
+
+	public JButton getActivityButton() {
+		return activityButton;
+	}
+
+	public void setActivityButton(JButton activityButton) {
+		this.activityButton = activityButton;
+	}
+
+	public JButton getProfilButton() {
+		return profilButton;
+	}
+
+	public void setProfilButton(JButton profilButton) {
+		this.profilButton = profilButton;
 	}
 
 }

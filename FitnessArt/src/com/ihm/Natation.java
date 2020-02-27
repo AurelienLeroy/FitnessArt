@@ -1,14 +1,12 @@
 package ihm;
 
-import javax.swing.JPanel;
-import org.jfree.chart.ChartPanel;
 import java.awt.Font;
-import java.util.ArrayList;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-public class Apnee extends JPanel {
-	
+public class Natation extends JPanel{
 	/**
 	 * 
 	 */
@@ -17,7 +15,6 @@ public class Apnee extends JPanel {
 	private JButton progresButton;
 	private JButton profilButton;
 	private JLabel title;
-	static ArrayList<Float> data, data2;
 
 	public JButton getBackButton() {
 		return backButton;
@@ -46,7 +43,7 @@ public class Apnee extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public Apnee() {
+	public Natation() {
 		setLayout(null);
 		
 		Font font = new Font("Tahoma", Font.BOLD, 50);
@@ -63,39 +60,10 @@ public class Apnee extends JPanel {
 		profilButton.setBounds(800, 650, 150, 60);
 		add(profilButton);
 		
-		title = new JLabel("Apnée");
+		title = new JLabel("Natation");
 		title.setFont(font);
-		title.setBounds(550, 10, 190, 69);
+		title.setBounds(550, 10, 400, 69);
 		add(title);
-		
-		/* Remplacer par la BDD */
-		data = new ArrayList<Float>();
-		data.add((float) 2);
-		data.add((float) 8.1);
-		data.add((float) 4.4);
-		data.add((float) 2);
-		data.add((float) 4);
-		data.add((float) 6);
-		data.add((float) 1);
-		data.add((float) 2.4);
-		data.add((float) 9);
-		data.add((float) 4);
-		data.add((float) 1.7);
-		data.add((float) 3.4);
-		data.add((float) 5);
-		data.add((float) 4);
-		data.add((float) 8);
-		
-		data2 = new ArrayList<Float>();
-		data2.add((float) 5);
-		data2.add((float) 1);
-		data2.add((float) 3.7);
-		/***************************/
-		
-		Courbe courbe = new Courbe("Courbe apnée", "Profondeur", "Temps");
-		ChartPanel courbePanel = courbe.getChartPanel();
-		courbePanel.setBounds(725, 150, 450, 450);
-		add(courbePanel);
+
 	}
 }
-

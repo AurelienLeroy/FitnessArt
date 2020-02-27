@@ -1,14 +1,13 @@
-package com.ihm;
+package ihm;
 
+//import dataBase.DataBase;
 
 public class Tests {
 
 	public static void main(String[] args) throws Exception {
-		Fenetre fen = new Fenetre();
+		new Fenetre();
 		//DataBase bd = new DataBase();
 	
-		
-
 	}
 
 }

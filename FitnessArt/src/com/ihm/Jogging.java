@@ -1,196 +1,100 @@
-package com.ihm;
+package ihm;
 
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
-
+import org.jfree.chart.ChartPanel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JComboBox;
 
-public class Jogging extends Thread {
-	
-	private JPanel panel;
-	
-	private JButton changerButton;
+public class Jogging extends JPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JButton backButton;
 	private JButton progresButton;
 	private JButton profilButton;
-	private JButton startButton;
-	private JButton clearButton;
-	
 	private JLabel title;
+	private JTextField jtfTemps, jtfDistance;
 	
-	private JComboBox<String>comboBox;
-	
-	private JLabel pointLabel1;
-    private JLabel pointLabel2;
-    
-    private JLabel hourValue;
-    private JLabel minuteValue;
-    private JLabel secondValue;
-    
-    
-    private static final int CHRONO_SPEED = 1000;
-	private static final long serialVersionUID = 1L;
-	private boolean stoper = true;
-	
-	private Jogging instance = this;
+	static ArrayList<Float> data, data2, data3;
 
 	/**
 	 * Create the panel.
 	 */
 	public Jogging() {
 		
-		panel = new JPanel();
-		panel.setLayout(null);
+		setLayout(null);
 		
 		Font font = new Font("Tahoma", Font.BOLD, 50);
+		Font font2 = new Font("Tahoma", Font.BOLD, 30);
 		
-		changerButton = new JButton("Changer");
-		changerButton.setBounds(600, 800, 150, 60);
-		panel.add(changerButton);
+		JLabel labelDonnees = new JLabel("Nouvelles données");
+		labelDonnees.setFont(font2);
+		labelDonnees.setBounds(125, 200, 300, 50);
+		add(labelDonnees);
+		
+		JLabel labelTemps = new JLabel("Temps");
+		labelTemps.setBounds(125, 300, 100, 20);
+		add(labelTemps);
+		jtfTemps = new JTextField(4);
+		jtfTemps.setBounds(200, 300, 150, 25);
+		add(jtfTemps);
+		
+		JLabel labelDistance = new JLabel("Distance");
+		labelDistance.setBounds(125, 350, 100, 20);
+		add(labelDistance);
+		jtfDistance = new JTextField(4);
+		jtfDistance.setBounds(200, 350, 150, 25);
+		add(jtfDistance);
+		
+		backButton = new JButton("Retour");
+		backButton.setBounds(300, 650, 150, 60);
+		add(backButton);
 		
 		progresButton = new JButton("Progres");
-		progresButton.setBounds(850, 800, 150, 60);
-		panel.add(progresButton);
+		progresButton.setBounds(550, 650, 150, 60);
+		add(progresButton);
 		
 		profilButton = new JButton("Profil");
-		profilButton.setBounds(1100, 800, 150, 60);
-		panel.add(profilButton);
+		profilButton.setBounds(800, 650, 150, 60);
+		add(profilButton);
 		
 		title = new JLabel("Jogging");
 		title.setFont(font);
-		title.setBounds(850, 10, 400, 100);
-		panel.add(title);
+		title.setBounds(550, 10, 400, 100);
+		add(title);
 		
-		startButton = new JButton("Start");
-		startButton.addActionListener(new StartStopAction());
-		startButton.setBounds(775, 500, 150, 60);
-		panel.add(startButton);
+		/* Faudra remplacer ça avec la BDD  */
+		data = new ArrayList<Float>();
+		data.add((float) 2);
+		data.add((float) 8.1);
+		data.add((float) 4.4);
 		
-		clearButton = new JButton("Clear");
+		data2 = new ArrayList<Float>();
+		data2.add((float) 5);
+		data2.add((float) 1);
+		data2.add((float) 3.7);
+		/**********************************/
 		
-		clearButton.setBounds(975, 500, 150, 60);
-		panel.add(clearButton);
+		Histogramme histo = new Histogramme("Jogging","Séance","Distance (en km)");
+		ChartPanel histoPanel = histo.getChartPanel();
 		
-		comboBox = new JComboBox();
-		comboBox.setBounds(33, 321, 97, 26);
-		panel.add(comboBox);
-		//***************
-		
-		
-		
-		pointLabel1 = new JLabel(":");
-		panel.add(pointLabel1);
-		pointLabel1.setBounds(850, 150, 5, 80);
-    	pointLabel1.setFont(font);
-    	
-        pointLabel2 = new JLabel(":");
-        panel.add(pointLabel2);
-        pointLabel2.setBounds(960, 150, 5, 80);
-        pointLabel2.setFont(font);
-        
-        hourValue = new JLabel("00");
-        panel.add(hourValue);
-        hourValue.setBounds(750, 150, 80, 80);
-        hourValue.setFont(font);
-        
-        minuteValue = new JLabel("00");
-        panel.add(minuteValue);
-        minuteValue.setBounds(860, 150, 80, 80);
-        minuteValue.setFont(font);
-        
-        secondValue = new JLabel("00");
-        panel.add(secondValue);
-        secondValue.setBounds(970, 150, 80, 80);
-        secondValue.setFont(font);
-
-	}
-	
-	
-
-	public JLabel getPointLabel1() {
-		return pointLabel1;
+		histoPanel.setBounds(750, 125, 450, 450);
+		add(histoPanel);
 	}
 
-
-
-	public void setPointLabel1(JLabel pointLabel1) {
-		this.pointLabel1 = pointLabel1;
+	public JButton getBackButton() {
+		return backButton;
 	}
 
-
-
-	public JLabel getPointLabel2() {
-		return pointLabel2;
-	}
-
-
-
-	public void setPointLabel2(JLabel pointLabel2) {
-		this.pointLabel2 = pointLabel2;
-	}
-
-
-
-	public JLabel getHourValue() {
-		return hourValue;
-	}
-
-
-
-	public void setHourValue(JLabel hourValue) {
-		this.hourValue = hourValue;
-	}
-
-
-
-	public JLabel getMinuteValue() {
-		return minuteValue;
-	}
-
-
-
-	public void setMinuteValue(JLabel minuteValue) {
-		this.minuteValue = minuteValue;
-	}
-
-
-
-	public JLabel getSecondValue() {
-		return secondValue;
-	}
-
-
-
-	public void setSecondValue(JLabel secondValue) {
-		this.secondValue = secondValue;
-	}
-
-
-
-	
-
-
-
-	public JPanel getPanel() {
-		return panel;
-	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
-
-	public JButton getChangerButton() {
-		return changerButton;
-	}
-
-	public void setChangerButton(JButton changerButton) {
-		this.changerButton = changerButton;
+	public void setBackButton(JButton changerButton) {
+		this.backButton = changerButton;
 	}
 
 	public JButton getProgresButton() {
@@ -209,22 +113,6 @@ public class Jogging extends Thread {
 		this.profilButton = profilButton;
 	}
 
-	public JButton getStartButton() {
-		return startButton;
-	}
-
-	public void setStartButton(JButton startButton) {
-		this.startButton = startButton;
-	}
-
-	public JButton getClearButton() {
-		return clearButton;
-	}
-
-	public void setClearButton(JButton clearButton) {
-		this.clearButton = clearButton;
-	}
-
 	public JLabel getTitle() {
 		return title;
 	}
@@ -233,38 +121,8 @@ public class Jogging extends Thread {
 		this.title = title;
 	}
 
-	public JComboBox<String> getComboBox() {
-		return comboBox;
-	}
-
-	public void setComboBox(JComboBox<String> comboBox) {
-		this.comboBox = comboBox;
-	}
-	
-	
-	
-	
-	
-	private class StartStopAction implements ActionListener {
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if (!stoper) {
-				stoper = true;
-				startButton.setText(" Start ");
-			} else {
-				stoper = false;
-				startButton.setText(" Pause ");
-				Thread chronoThread = new Thread(instance);
-				chronoThread.start();
-			}
-		}
-	}
-	
-	
-
 	public static void main(String[] args) {
 		new Jogging();
 	}
 	
 }
-
